@@ -2,7 +2,7 @@
 Python script to automate making and zipping multi-platform desktop builds for Unity games for easy distribution.
 
 ## Description
-The script calls the Unity editor as a CLI and then uses 7zip to make a compressed build file per platform.
+The script calls the Unity editor as a CLI and then uses 7zip to make a compressed build file per platform. The game version as defined in the editor under player settings (Edit->Project Settings->Player->Version) is added to the build name.
 
 ## Usage
 1. Make sure you have 7zip and a recent version of Python installed.
