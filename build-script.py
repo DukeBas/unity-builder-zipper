@@ -9,10 +9,10 @@ settings = {  # File paths are relative, except where noted
     'abs_path_unity': r'C:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Unity.exe',
     # Absolute path to 7-Zip executable
     '7z_path': r'C:\Program Files\7-Zip\7z.exe',
-    # Path to ProjectSettings.asset file
-    'project_settings': r'ProjectSettings/ProjectSettings.asset',
     # Name of the game, used for built executable name
     'game_name': r'ProjectAlexandrite',
+    # Path to ProjectSettings.asset file
+    'project_settings': r'ProjectSettings/ProjectSettings.asset',
     # Prefix for zipped build names
     'build_name': r'PA-',
     # Folder path for zipped builds
@@ -23,6 +23,8 @@ settings = {  # File paths are relative, except where noted
     'mac_builds_folder': r'auto-build-mac',
     # Folder path for latest Linux build
     'linux_builds_folder': r'auto-build-linux',
+    # Whether to include a README file in the build
+    'include_readme': True,
     # Path to README file
     'readme_filepath': r'README.md',
 }
@@ -111,9 +113,10 @@ for target_platform, build_name in build_names.items():
         exit(1)
 
     # Add README file to build folder
-    readme_path = Path(settings['readme_filepath'])
-    readme_dest = build_folder / readme_path
-    readme_dest.write_text(readme_path.read_text())
+    if settings['include_readme']:
+        readme_path = Path(settings['readme_filepath'])
+        readme_dest = build_folder / readme_path
+        readme_dest.write_text(readme_path.read_text())
 
     # Make a zip of the build folder
     zip_name = build_name + '.zip'
